@@ -11,18 +11,20 @@ if (isset($_POST['username'])) {
     if (login($username, $password)) {
         header('location: index.php');
         exit;
-    } elseif (!login($username, $password)) {
-        $error = "user not exist";
-    } else {
-        $error = "wrong passwrod";
     }
+    elseif (!(login($username, $password))) {
+        $error = "user not exist";
+    }
+
+        $error = "wrong passwrod";
+
 }
 include "html/header.php";
 ?>
-<div class="container mt-5">
-    <h2>Login</h2>
+<div class="container mt-5 card px-4 shadow-lg p-3 bg-body rounded">
+    <h2 class="text-center mt-3 mb-2">Login page</h2>
     <?php
-    if (!$error) {
+    if ($error) {
         echo "<div class='alert alert-info' role='alert'>";
         echo $error;
         echo "</div>";
@@ -44,7 +46,10 @@ include "html/header.php";
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Remember Me</label>
         </div>
-        <input type="submit" class="btn btn-primary mt-2" value="login">
+        
+        <input type="submit" class="btn btn-primary mt-2 " value="login">
+        
+        <p>don't have account? <a href="register.php">register</a></p>
     </form>
 </div>
 <?php
